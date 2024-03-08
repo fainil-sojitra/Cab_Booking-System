@@ -1,0 +1,39 @@
+.cab_status {
+  display: flex;
+  /* border: 1px solid black; */
+  margin: auto;
+  text-align: center;
+}
+
+.cab_status label {
+  /* border: 1px solid black; */
+  /* width: 50%; */
+  margin-right: 10px;
+}
+
+.cab_status input {
+  margin-top: 9px;
+  margin-right: 10px;
+}
+
+.cab_status button {
+  margin-left: 20px;
+  width: 100px;
+}
+.status_g {
+  background-color: rgb(54, 255, 47);
+  color: white;
+  padding: 1px 8px;
+  text-align: center;
+  font-size: small;
+  border-radius: 20px;
+}
+
+.status_r {
+  background-color: red;
+  color: white;
+  padding: 1px 8px;
+  text-align: center;
+  font-size: small;
+  border-radius: 20px;
+}

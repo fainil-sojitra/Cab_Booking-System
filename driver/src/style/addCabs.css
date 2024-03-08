@@ -1,0 +1,67 @@
+.add_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  margin-bottom: 20px;
+  color: white;
+  background-color: #f9a826;
+  /* width: 100%; */
+}
+
+.add_btn i {
+  padding-right: 5px;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-title i {
+  padding-right: 5px;
+}
+
+.add input label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ////////////////////////////// */
+/* ////////////////////////////// */
+/* ////////////////////////////// */
+
+.modal-header {
+  margin-bottom: 0px;
+}
+.vl {
+  border-left: 1px solid rgba(0, 0, 0, 0.221);
+  height: 450px;
+  margin: 60px 15px 10px 15px;
+}
+
+.main_div {
+  margin-top: -17px !important;
+  padding: 0px 30px;
+  padding-bottom: 50px;
+  display: flex;
+  /* border: 1px solid red; */
+}
+
+.left_div {
+  width: 100%;
+  margin-top: 50px;
+  /* border: 1px solid black; */
+}
+
+.right_div {
+  width: 100%;
+  margin-top: 50px;
+  /* border: 1px solid red; */
+}
+
+/* form {
+  margin-top: 0px;
+} */

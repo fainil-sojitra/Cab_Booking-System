@@ -1,0 +1,105 @@
+/* ----------------- scroll table ----------------- */
+
+table.scrolldown01 {
+  width: 100%;
+
+  /* border-collapse: collapse; */
+  border-spacing: 0;
+  /* border: 2px solid black; */
+}
+
+/* To display the block as level element */
+table.scrolldown01 tbody,
+table.scrolldown01 thead {
+  display: block;
+}
+
+thead tr th {
+  height: 40px;
+  line-height: 40px;
+}
+
+table.scrolldown01 tbody {
+  /* Set the height of table body */
+  height: 450px;
+
+  /* Set vertical scroll */
+  overflow-y: auto;
+
+  /* Hide the horizontal scroll */
+  overflow-x: hidden;
+}
+
+thead th {
+  width: 200px;
+}
+
+.t_body td {
+  width: 250px;
+  /* border-right: 2px solid black; */
+}
+
+td {
+  text-align: center;
+}
+
+/* ----------------- scroll table ----------------- */
+
+.main_div {
+  margin-top: 100px;
+  padding: 0px 30px;
+  padding-bottom: 50px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.63);
+  margin-bottom: 2rem;
+  letter-spacing: 0.1rem;
+  /* font-weight: bold; */
+}
+
+/* ----------------------- table ----------------------- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0px 0px 10px #3838389d;
+  padding-bottom: 10px;
+}
+
+th {
+  text-align: left;
+  padding: 15px;
+  background-color: #000d6b;
+  color: white;
+  font-size: larger;
+  font-weight: 700;
+}
+
+td {
+  text-align: left;
+  padding: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #000c6b1c;
+}
+
+/* ----------------------- table ----------------------- */
+
+.modal-body label {
+  font-weight: bolder;
+  font-size: larger;
+  color: black;
+}
+
+.View_btn {
+  color: rgb(132, 129, 129);
+  background-color: #000d6b;
+}
+
+.View_btn:hover {
+  color: white;
+  background-color: #081891;
+}

@@ -1,0 +1,134 @@
+/* ----------------- scroll table ----------------- */
+
+table.scrolldown {
+  width: 100%;
+  margin-bottom: 50px;
+
+  /* border-collapse: collapse; */
+  border-spacing: 0;
+  /* border: 2px solid black; */
+}
+
+/* To display the block as level element */
+table.scrolldown tbody,
+table.scrolldown thead {
+  display: block;
+}
+
+thead tr th {
+  height: 40px;
+  line-height: 40px;
+}
+
+table.scrolldown tbody {
+  /* Set the height of table body */
+  height: 300px;
+
+  /* Set vertical scroll */
+  overflow-y: auto;
+
+  /* Hide the horizontal scroll */
+  overflow-x: hidden;
+}
+
+thead th {
+  width: 245px;
+}
+
+tbody td {
+  width: 200px;
+  /* border-right: 2px solid black; */
+}
+
+td {
+  text-align: center;
+}
+
+/* ----------------- scroll table ----------------- */
+
+.main_div {
+  margin-top: 100px;
+  padding: 0px 30px;
+  padding-bottom: 50px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.63);
+  margin-bottom: 2rem;
+  letter-spacing: 0.1rem;
+  /* font-weight: bold; */
+}
+
+/* ----------------------- table ----------------------- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0px 0px 10px #3838389d;
+  padding-bottom: 10px;
+}
+
+th {
+  text-align: left;
+  padding: 15px;
+  background-color: #000d6b;
+  color: white;
+  font-size: larger;
+  font-weight: 700;
+}
+
+td {
+  text-align: left;
+  padding: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #000c6b1c;
+}
+
+/* ----------------------- table ----------------------- */
+
+.View_btn {
+  color: rgb(132, 129, 129);
+  background-color: #000d6b;
+}
+
+.View_btn:hover {
+  color: white;
+  background-color: #081891;
+}
+
+.modal-body label {
+  font-weight: bolder;
+  font-size: larger;
+  color: black;
+}
+
+.status_g {
+  background-color: rgb(54, 255, 47);
+  color: white;
+  padding: 1px 8px;
+  text-align: center;
+  font-size: small;
+  border-radius: 20px;
+}
+
+.status_r {
+  background-color: red;
+  color: white;
+  padding: 1px 8px;
+  text-align: center;
+  font-size: small;
+  border-radius: 20px;
+}
+
+.edit_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit_button i {
+  padding-right: 5px;
+}

@@ -1,0 +1,30 @@
+.add_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  margin-bottom: 20px;
+  color: white;
+  background-color: #f9a826;
+  /* width: 100%; */
+}
+
+.add_btn i {
+  padding-right: 5px;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-title i {
+  padding-right: 5px;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
