@@ -230,7 +230,6 @@ const BookingForm = (props) => {
           required
         />
       </FormGroup>
-      <h5 className="mb-4 fw-bold ">Payment Information</h5>
       <FormGroup>
         <PaymentMethod Submit={submitHandler} />
       </FormGroup>

@@ -3,10 +3,13 @@ import AddCabs from "./AddCabs";
 import "../style/cabDetails.css";
 import axios from "axios";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 const CabDetails = () => {
   const [data, setData] = useState([]);
   const [state, setState] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCabData();
@@ -48,6 +51,24 @@ const CabDetails = () => {
         swal("Driver imaginary data is safe!");
       }
     });
+  };
+
+  const handleSubmit = (_id) => {
+    // console.log("value--->", _id);
+    axios
+      .put(`${process.env.REACT_APP_API}/cabDetails/${_id}`, {
+        ...state,
+        cab_status: "InActive",
+      })
+      .then((res) => {
+        setState(res?.data);
+        getCabData();
+        navigate("/ride");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setState({ cab_charge: state.cab_charge });
   };
 
   return (
@@ -188,10 +209,56 @@ const CabDetails = () => {
                   Cab Seat : <u>{state.cab_seat}</u>
                 </label>
                 <br />
-                <label>
-                  Cab Charge : <u>{state.cab_charge}</u>
-                </label>
-                <br />
+                <form>
+                  <div className="mb-3">
+                    <label className="form-label">Cab Charge : &nbsp;</label>
+                    {/*<input
+                      type="number"
+                      className="w-10 "
+                      placeholder={state.cab_charge}
+                      name="cab_charge"
+                      value={data.cab_charge}
+                      // onChange={handleData}
+                      required
+                    />
+                    <button
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleSubmit(state._id);
+                      }}
+                      className="btn btn-outline-success"
+                      data-bs-dismiss="modal"
+                    >
+                      Save
+                    </button> */}
+                    <div className="input-group mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={state.cab_charge}
+                        aria-label="Recipient's username"
+                        aria-describedby="button-addon2"
+                        onChange={(e) =>
+                          setState({ ...state, cab_charge: e.target.value })
+                        }
+                      />
+                      <button
+                        className="btn btn-outline-success"
+                        type="submit"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSubmit(state._id);
+                        }}
+                        id="button-addon2"
+                        data-bs-dismiss="modal"
+                      >
+                        Save
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                {/* <br /> */}
                 <label>
                   Cab Brand : <u>{state.cab_brand}</u>
                 </label>

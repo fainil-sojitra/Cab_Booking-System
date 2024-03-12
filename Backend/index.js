@@ -211,10 +211,10 @@ app.post("/contact", async (req, res) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL,
+      from: '"Cab Booking"<process.env.EMAIL>',
       to: result.email,
       subject: "Cab Booking System",
-      html: "<h1><u>Our Contact Information</u></h1> <br/> <h3> Cab Booking System : <br/> Address : 123 Royal Bazar, Katargam, Surat, Gujrat,<br/> Mo.Number : 8320656249,<br/> Email : fainilsojitra100@gmail.com,<br/><br/> how can i help you. </h3>",
+      html: "<h1><u>Our Contact Information</u></h1> <br/> <h3> Cab Booking System : <br/> Address : 123 Royal Bazar, Katargam, Surat, Gujrat,<br/> Mo.Number : 8320656249,<br/> Email : cabbooking9@gmail.com,<br/><br/> how can i help you. </h3>",
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

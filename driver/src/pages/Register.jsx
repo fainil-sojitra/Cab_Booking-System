@@ -57,7 +57,7 @@ const Register = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                       <p className="text-center h2 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                        Registration an Driver
+                        Driver Registration
                       </p>
 
                       <form onSubmit={handleSubmit} className="mx-1 mx-md-4">

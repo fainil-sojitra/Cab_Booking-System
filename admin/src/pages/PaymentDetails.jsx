@@ -18,7 +18,7 @@ const PaymentDetails = () => {
   };
   return (
     <>
-      <h2 className="title">Cab Details</h2>
+      <h2 className="title">Payment Information</h2>
       <table className="scrolldown">
         <thead style={{ borderBottom: "2px solid #000d6b" }}>
           <tr className="tr">

@@ -132,6 +132,14 @@ const Login = () => {
                     </NavLink>
                   </span>
                 </div>
+                <span>
+                  <a
+                    href="http://localhost:3000/login"
+                    className="btn btn-outline-primary w-100"
+                  >
+                    Login as Client
+                  </a>
+                </span>
               </form>
             </div>
           </div>

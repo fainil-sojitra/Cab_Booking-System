@@ -20,7 +20,7 @@ const PaymentDetails = () => {
   return (
     <>
       <div className="container">
-        <h2 className="title">Cab Details</h2>
+        <h2 className="title">Payment Details</h2>
         <table className="scrolldown">
           <thead style={{ borderBottom: "2px solid #000d6b" }}>
             <tr className="tr">

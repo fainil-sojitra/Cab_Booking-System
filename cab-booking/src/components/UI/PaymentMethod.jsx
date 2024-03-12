@@ -35,7 +35,7 @@ const PaymentMethod = (props) => {
         <img src={paypal} alt="paypal.img" />
       </div> */}
       <div className="payment text-end mt-5">
-        <button onClick={props.Submit}>Reserve Now</button>
+        <button onClick={props.Submit}>Book Now</button>
       </div>
     </>
   );

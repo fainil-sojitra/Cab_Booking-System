@@ -21,7 +21,7 @@ const BookingDetails = () => {
     <>
       <div className="layout">
         {/* --------------------Drivers Registration -------------------*/}
-        <h2 className="title">Drivers Registration</h2>
+        <h2 className="title">Booking Information</h2>
         <table className="scrolldown">
           <thead style={{ borderBottom: "2px solid #000d6b" }}>
             <tr>

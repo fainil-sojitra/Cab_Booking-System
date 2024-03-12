@@ -30,10 +30,12 @@ const socialLinks = [
 ];
 
 const Contact = () => {
+  let userEmail = JSON.parse(localStorage.getItem("client_login"));
+
   const [contact, setContact] = useState({
     type: "client",
-    name: "",
-    email: "",
+    name: userEmail.first_name,
+    email: userEmail.email,
     message: "",
   });
 
@@ -75,9 +77,9 @@ const Contact = () => {
                     <Input
                       placeholder="Your Name"
                       type="text"
-                      value={contact.name}
+                      value={userEmail.first_name}
                       onChange={(e) =>
-                        setContact({ ...contact, name: e.target.value })
+                        setContact({ ...contact, name: userEmail.first_name })
                       }
                     />
                   </FormGroup>
@@ -85,7 +87,7 @@ const Contact = () => {
                     <Input
                       placeholder="Email"
                       type="email"
-                      value={contact.email}
+                      value={userEmail.email}
                       onChange={(e) =>
                         setContact({ ...contact, email: e.target.value })
                       }
@@ -124,7 +126,7 @@ const Contact = () => {
                   <div className=" d-flex align-items-center gap-2">
                     <h6 className="mb-0 fs-6">Email:</h6>
                     <p className="section__description mb-0">
-                      cabbooking7997@gmail.com
+                      cabbooking9@gmail.com
                     </p>
                   </div>
 

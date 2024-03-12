@@ -53,6 +53,11 @@ const Login = () => {
     }
   });
 
+  // const handleDriver = (e) => {
+  //   e.preventDefault();
+  //   window.location.assign("/localhost:3001/register");
+  // };
+
   return (
     <>
       <section className="vh-100">
@@ -132,6 +137,14 @@ const Login = () => {
                     </NavLink>
                   </span>
                 </div>
+                <span>
+                  <a
+                    href="http://localhost:3001/login"
+                    className="btn btn-outline-primary w-100"
+                  >
+                    Login as Driver
+                  </a>
+                </span>
               </form>
             </div>
           </div>
