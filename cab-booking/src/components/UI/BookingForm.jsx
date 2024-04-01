@@ -146,6 +146,9 @@ const BookingForm = (props) => {
       navigate("/cars");
     }, 700);
   };
+
+  const currentDate = new Date().toISOString().split("T")[0];
+
   return (
     <Form>
       <FormGroup className="booking__form d-inline-block me-4 mb-4">
@@ -155,6 +158,7 @@ const BookingForm = (props) => {
           className="from_date"
           name="from_date"
           value={bookingData.from_date}
+          min={currentDate}
           onChange={(e) =>
             setBookingData({
               ...bookingData,
@@ -171,6 +175,7 @@ const BookingForm = (props) => {
           className="to_date"
           name="to_date"
           value={bookingData.to_date}
+          min={currentDate}
           onChange={(e) =>
             setBookingData({
               ...bookingData,
@@ -214,7 +219,7 @@ const BookingForm = (props) => {
       </FormGroup>
 
       <FormGroup>
-        <textarea
+        <input
           rows={5}
           type="textarea"
           className="textarea"

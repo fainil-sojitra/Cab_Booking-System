@@ -3,6 +3,12 @@ import axios from "axios";
 import swal from "sweetalert";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -13,7 +19,8 @@ const Register = () => {
     contact: "",
     password: "",
   });
-
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,29 +28,108 @@ const Register = () => {
     if (auth) {
       navigate("/home");
     }
-  });
+  }, [navigate]);
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+
+    // Validate the field as the user types
+    validateField(e.target.name, e.target.value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios
-      .post(`${process.env.REACT_APP_API}/registration`, {
-        ...data,
-      })
-      .then((res) => {
-        setData(res?.data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log("There was an error!", error);
+    if (validateForm()) {
+      axios
+        .post(`${process.env.REACT_APP_API}/registration`, {
+          ...data,
+        })
+        .then((res) => {
+          setData(res?.data);
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log("There was an error!", error);
+        });
+      swal({
+        title: "REGISTRATION SUCCESSFUL!",
+        icon: "success",
       });
-    swal({
-      title: "REGISTRATION SUCCESSFULLY!",
-      icon: "success",
-    });
-    setTimeout(() => {
-      navigate("/login");
-    }, 650);
+      setTimeout(() => {
+        navigate("/login");
+      }, 650);
+    }
+  };
+
+  const validateField = (fieldName, value) => {
+    let error = "";
+
+    switch (fieldName) {
+      case "first_name":
+        error =
+          value.trim() && /^[a-zA-Z]+$/.test(value)
+            ? ""
+            : "First Name should contain only alphabetic characters";
+        break;
+      case "last_name":
+        error =
+          value.trim() && /^[a-zA-Z]+$/.test(value)
+            ? ""
+            : "Last Name should contain only alphabetic characters";
+        break;
+      case "email":
+        error = value.trim()
+          ? /^\S+@\S+\.\S+$/.test(value)
+            ? ""
+            : "Email address is invalid"
+          : "Email is required";
+        break;
+      case "contact":
+        error = value.trim()
+          ? /^\d{10}$/.test(value)
+            ? ""
+            : "Contact number is invalid"
+          : "Contact number is required";
+        break;
+      case "password":
+        error = validatePassword(value);
+        break;
+      default:
+        break;
+    }
+
+    setErrors({ ...errors, [fieldName]: error });
+  };
+
+  const validateForm = () => {
+    for (const [key, value] of Object.entries(data)) {
+      validateField(key, value);
+    }
+
+    return Object.values(errors).every((error) => error === "");
+  };
+
+  const validatePassword = (value) => {
+    if (!value.trim()) {
+      return "Password is required";
+    } else if (value.length < 8) {
+      return "Password should be at least 8 characters long";
+    } else if (!/[A-Z]/.test(value)) {
+      return "Password should contain at least one uppercase letter";
+    } else if (!/[a-z]/.test(value)) {
+      return "Password should contain at least one lowercase letter";
+    } else if (!/\d/.test(value)) {
+      return "Password should contain at least one digit";
+    } else if (!/[^a-zA-Z0-9]/.test(value)) {
+      return "Password should contain at least one special character";
+    } else {
+      return "";
+    }
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   return (
@@ -61,133 +147,109 @@ const Register = () => {
                       </p>
 
                       <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <div className="form-outline flex-fill mb-0">
-                            <input
-                              type="text"
-                              id="form3Example1c"
-                              className="form-control"
-                              name="first_name"
-                              value={data.first_name}
-                              onChange={(e) =>
-                                setData({
-                                  ...data,
-                                  first_name: e.target.value,
-                                })
-                              }
-                              required
-                            />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example1c"
-                            >
-                              Your First Name
-                            </label>
-                          </div>
-                        </div>
+                        <TextField
+                          fullWidth
+                          label="Your First Name"
+                          id="first_name"
+                          className="mb-4"
+                          name="first_name"
+                          value={data.first_name}
+                          onChange={handleChange}
+                          error={!!errors.first_name}
+                          helperText={errors.first_name}
+                          variant="standard"
+                          required
+                        />
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <div className="form-outline flex-fill mb-0">
-                            <input
-                              type="text"
-                              id="form3Example1c"
-                              className="form-control"
-                              name="last_name"
-                              value={data.last_name}
-                              onChange={(e) =>
-                                setData({ ...data, last_name: e.target.value })
-                              }
-                              required
-                            />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example1c"
-                            >
-                              Your Last Name
-                            </label>
-                          </div>
-                        </div>
+                        <TextField
+                          fullWidth
+                          label="Your Last Name"
+                          id="last_name"
+                          className="mb-4"
+                          name="last_name"
+                          value={data.last_name}
+                          onChange={handleChange}
+                          error={!!errors.last_name}
+                          helperText={errors.last_name}
+                          variant="standard"
+                          required
+                        />
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <div className="form-outline flex-fill mb-0">
-                            <input
-                              type="email"
-                              id="form3Example3c"
-                              className="form-control"
-                              name="email"
-                              value={data.email}
-                              onChange={(e) =>
-                                setData({ ...data, email: e.target.value })
-                              }
-                              required
-                            />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example3c"
-                            >
-                              Your Email
-                            </label>
-                          </div>
-                        </div>
+                        <TextField
+                          fullWidth
+                          label="Your Email"
+                          id="email"
+                          className="mb-4"
+                          name="email"
+                          type="email"
+                          value={data.email}
+                          onChange={handleChange}
+                          error={!!errors.email}
+                          helperText={errors.email}
+                          variant="standard"
+                          required
+                        />
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <div className="form-outline flex-fill mb-0">
-                            <input
-                              type="number"
-                              id="form3Example4c"
-                              className="form-control"
-                              min="0"
-                              // pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                              name="contact"
-                              value={("+91", data.contact)}
-                              onChange={(e) =>
-                                setData({ ...data, contact: e.target.value })
-                              }
-                              required
-                            />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example4c"
-                            >
-                              Contact Number
-                            </label>
-                          </div>
-                        </div>
+                        <TextField
+                          fullWidth
+                          label="Contact Number"
+                          id="contact"
+                          className="mb-4"
+                          name="contact"
+                          type="number"
+                          value={data.contact}
+                          onChange={handleChange}
+                          error={!!errors.contact}
+                          helperText={errors.contact}
+                          variant="standard"
+                          required
+                        />
 
-                        <div className="d-flex flex-row align-items-center mb-4">
-                          <div className="form-outline flex-fill mb-0">
-                            <input
-                              type="password"
-                              id="form3Example4cd"
-                              className="form-control"
-                              name="password"
-                              value={data.password}
-                              onChange={(e) =>
-                                setData({ ...data, password: e.target.value })
-                              }
-                              required
-                            />
-                            <label
-                              className="form-label"
-                              htmlFor="form3Example4cd"
-                            >
-                              your password
-                            </label>
-                          </div>
-                        </div>
+                        <TextField
+                          fullWidth
+                          label="Your Password"
+                          id="password"
+                          className="mb-4"
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          value={data.password}
+                          onChange={handleChange}
+                          error={!!errors.password}
+                          helperText={errors.password}
+                          variant="standard"
+                          required
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <IconButton
+                                  onClick={handleTogglePasswordVisibility}
+                                  edge="end"
+                                >
+                                  {showPassword ? (
+                                    <VisibilityOff />
+                                  ) : (
+                                    <Visibility />
+                                  )}
+                                </IconButton>
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
 
-                        <div className="w-100">
-                          <button
-                            type="submit"
-                            className="btn btn-primary btn-lg w-100"
-                          >
-                            Register
-                          </button>
-                        </div>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                          fullWidth
+                          sx={{ mt: 3 }}
+                        >
+                          Register
+                        </Button>
+
                         <br />
                         <span className="fw-bold">
                           <NavLink to={"/login"} variant="body2">
-                            {"Already have an account? Log in"}
+                            Already have an account? Log in
                           </NavLink>
                         </span>
                       </form>
