@@ -104,9 +104,22 @@ app.post("/cabDetails", upload.single("cab_image"), async (req, res) => {
 });
 
 // --------- cab details get api ---------
-
 app.get("/cabDetails", async (req, res) => {
   let cabDetails = await CabDetail.find(req.body);
+  res.send(cabDetails);
+});
+
+// --------- cab price high-to-low get api ---------
+
+app.get("/high_to_low", async (req, res) => {
+  let cabDetails = await CabDetail.find(req.body).sort({ cab_charge: -1 });
+  res.send(cabDetails);
+});
+
+// --------- cab price low-to-high get api ---------
+
+app.get("/low_to_high", async (req, res) => {
+  let cabDetails = await CabDetail.find(req.body).sort({ cab_charge: 1 });
   res.send(cabDetails);
 });
 
